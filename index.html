@@ -1,0 +1,571 @@
+\<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">	
+    <link rel="icon" href="https://raw.githubusercontent.com/Huyenuiio/Data-src/main/quiz_new_filled_icon_201253.png" type="png">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <title>Trắc nghiệm</title>
+    <style>
+        /* * {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+} */
+html{
+
+    cursor: url('https://github.com/Huyenuiio/Data-src/raw/main/office-material%20(1).cur'), auto;
+}
+       body {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+   height: 100vh;
+  background: linear-gradient(184deg,#8754ff,#8E2DE2);
+  background-repeat: no-repeat;
+  background-size: cover;
+   font-family: 'Quicksand', sans-serif;
+    /* Thay đổi con trỏ chuột khi di chuyển */
+              cursor: url('https://github.com/Huyenuiio/Data-src/raw/main/office-material%20(1).cur'), auto;
+}
+
+ body:hover {
+    /* Thay đổi con trỏ chuột khi di chuyển lên một phần tử */
+    cursor: url('https://github.com/Huyenuiio/Data-src/raw/main/office-material-_1_.cur'), auto;
+}
+body:active {
+    /* Thay đổi con trỏ chuột khi nhấp chuột */
+    cursor: url('https://github.com/Huyenuiio/Data-src/raw/main/inclined-pencil.cur'), auto;
+}
+
+
+
+
+
+
+
+
+
+
+#quiz-container {
+    width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background: white;
+    /* box-shadow: 0 2px 10px rgba(0,0,0,0.1); */
+    border-radius: 8px;
+     font-family: 'Quicksand', sans-serif;
+    cursor: url('https://github.com/Huyenuiio/Data-src/raw/main/office-material%20(1).cur'), auto;
+    box-shadow: 0 2px 10px #007bff ;
+}
+
+#question-container {
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 10px 15px;
+    margin-top: 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 5px;
+    width: 100%; /* Thêm dòng này */
+     font-family: 'Quicksand', sans-serif;
+         font-weight: 500;
+
+}
+
+button:hover {
+    background-color: #0056b3;
+    cursor: url('https://github.com/Huyenuiio/Data-src/raw/main/office-material-_1_.cur'), auto;
+}
+button:active{
+     /* Thay đổi con trỏ chuột khi nhấp chuột */
+     cursor: url('https://github.com/Huyenuiio/Data-src/raw/main/inclined-pencil.cur'), auto;
+}
+
+#score-container {
+    margin-top: 20px;
+    font-size: 20px;
+    color: green;
+    font-weight: 500;
+
+}
+
+#explanation {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #ffdddd;
+    border-left: 5px solid #ff5555;
+    color: #333;
+    display: none;
+}
+#correct-explanation {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #ddffdd;
+    border-left: 5px solid #55ff55;
+    color: #333;
+    display: none;
+}
+
+/* CSS Media Queries*/
+@media (min-width: 768px) {
+    #quiz-container {
+        width: 600px;
+    }
+
+    button {
+        width: auto; /* Thêm dòng này */
+    }
+} 
+#custom-alert {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+#custom-alert-content {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+#custom-alert-close {
+    margin-top: 20px;
+}
+.cleardata:hover {   
+    cursor: url('https://github.com/Huyenuiio/Data-src/raw/main/delete-_1_.cur'), auto;
+}
+.cleardata:active{
+    cursor: url('https://github.com/Huyenuiio/Data-src/raw/main/delete.cur'), auto;
+
+}
+
+    </style>
+</head>
+<body>
+    <div id="quiz-container">
+        <div id="question-container"></div>
+        <div id="correct-explanation" style="display: none;"></div>
+        <div id="explanation" style="display: none;"></div>
+        <div id="math-explanation" style="display: none;"></div> <!-- Thêm thẻ div này -->
+        <button id="load-more">Tải thêm câu hỏi </button>
+        <button id="check-score">Kiểm tra điểm</button>
+        <button    class="cleardata"       id="clear-data">Xóa dữ liệu</button>
+        <div  class="score" id="score-container" style="display: none;">Số câu đúng: <span id="score"></span>/10</div>
+    </div>
+<div id="custom-alert" style="display: none;">
+    <div id="custom-alert-content"></div>
+    <button id="custom-alert-close">Đóng</button>
+</div>
+</div>
+    <script>
+
+let currentQuestionIndex = 0;
+let score = 0;
+let userActions = [];
+let answered = false; // Thêm biến này
+
+
+const questions = [
+    {
+        question: "Câu 1: Tiến trình là gì, đặt điểm?",
+        answers: ["Tiến trình là chương trình đang được xử lý, tiến trình là chương trình đang chạy trong bộ nhớ, mỗi tiến trình sỡ hữu một con trỏ lệnh tập các thanh ghi và các biến", "ý đầu tiên đúng", "ý thứ hai đúng", "tất cả điều đúng"],
+        correctAnswer: 0,
+        explanation: "cả 3 ý điều là trạng thái của tiến trình",
+        mathProblem: "" // Thêm trường này
+    },
+    // Thêm các câu hỏi khác tương tự
+    {
+        question: "Câu 2: Các trạng thái của tiến trình?",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "New-Running-Block/Waiting-ready-terminated ",
+        mathProblem: ""
+    },
+    {
+        question: "Câu 3: Trạng thái nào mà tại một thời điểm chỉ có duy nhất một tiến trình?",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "Running",
+        mathProblem:" "
+    },
+    {
+        question: "Câu 4: Một tiến trình đang chờ được cấp phát CPU thuộc trạng thái nào?",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "Ready"
+    },
+    {
+        question: "Câu 5: Khi một tiến trình người dùng gọi đến một lời gọi hệ thống, tiến trình HĐH xử lý lời gọi này ở chế độ nào?",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "Đặc quyền"
+    },
+    {
+        question: "Câu 6: PCB (Process Control Block) Là gì?",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "là vùng nhớ lưu trữ thông tin mô tả tiến trình bao gồm (1) Định danh: Phân biệt các tiến trình (2) Trạng thái của tiến trình: xác định hoạt động hiện hành (3) Ngữ Cảnh: mô tả các tài nguyên dành cho tiến trình (4) Thông tin giao tiếp (với TT khác): tiến trình cha, tiến trình con. độ ưu tiên (5) Thông tin thống kê về hoạt động của tiến trình(thời gian sử dụng CPU, thời gian chờ,...)"
+    },
+    {
+        question: "Câu 7: Ngữ cảnh của tiến trình bao gồm các thông tin gì?",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "Các thông tin về bộ xử lý, các thanh ghi, bộ nhớ chính, tài nguyên sử dụng, tài nguyên tạo lập"
+    },
+    {
+        question: "Câu 8: Một tiến trình đang chờ một sự kiện, nó sẽ ở trạng thái nào?",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "Block/Waiting"
+    },
+    {
+        question: "Câu 9: Khi thao tác nhập xuất tiến trình hoàn tất. tiến trình đó chuyển về trạng thái nào?",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "Ready"
+    },
+    {
+        question: "Câu 10: Việc chuyển đổi ngữ cảnh có bất lợi gì?",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "Lãng phí thời gian"
+    },
+    {
+        question: "Câu 11: vùng nhớ nào chứa thông tin riêng của các tiến trình?",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "Stack"
+    },
+    {
+        question: "Câu 12: trong chiến lược điều phối nào, tiến trình vào trước cấp CPU trước?",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "FIFO"
+    },
+    {
+        question: "Câu 13: Phương pháp nhanh nhất để trao đổi dữ liệu giữa các tiến trình là gì?",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "sử dụng vùng nhớ chia sẽ"
+    },
+    {
+        question: "Câu 14: Trong đồ thị cấp phát tài nguyên, tiến trình được thể hiện bằng biểu tượng gì?",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "Vòng tròn"
+    },
+    {
+        question: "Câu 15: Phương pháp nào cho phép liên lạc trực tiếp gữa 2 tiến trình?",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "Pipe"
+    },
+    {
+        question: "Câu 16: Phân biệt địa chỉ ảo (logic) và địa chỉ vật lý?",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "Địa chỉ ảo: địa chỉ trong chương trình, hoặc địa chỉ do CPU phát ra khi truy xuất bộ nhớ | địa chỉ vật lý: là địa chỉ trên bộ nhớ vật lý, bộ nhớ chính, là địa chỉ thực tế mà trình quản lý bộ nhớ nhìn thấy vaf thao tác"
+    },
+    {
+        question: "Câu 17: Không gian địa chỉ là gì?",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "Tập hợp tất cả địa chỉ ảo phát sinh bởi một chương trình"
+    },
+    {
+        question: "Câu 18: Hãy phân biệt không gian địa chỉ  ảo của tiến trình, hông gian vật lý của tiến trình, không gian địa chỉ của CPU?",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "Không gian địa chỉ ảo của tiến trình: là vùng địa chỉ vật lý tương ứng với các địa chỉ ảo | Không gian vật lý của tiến trình: là tập hợp tất cả các địa chỉ vật lý tương ứng với các địa chỉ ảo | không gian địa chỉ của CPU: không gian địa chỉ ảo mà CPU có thể quản lý"
+    },
+    {
+        question: "Câu 19: các đặc điểm của kỹ thuật phân trang khi cấp phát vùng nhớ?",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "Phân bộ nhớ vật lý thành các khối (block) có kích thước cố định và bằng nhau, gọi là khung trang(page frame)| không gian địa chỉ cũng được chia thành các khối có cùng kích thướng với khung trang, và được gọi là trang(page)| khi cần nạp một tiến trình để xử lý, các trang của tiến trình sẽ được nạp vào những khung trang còn trống| một tiến trình kích thước N trang sẽ yêu cầu N khung trang tự do"
+    },
+    {
+        question: "",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: ""
+    },
+    {
+        question: "",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: ""
+    },
+];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+window.addEventListener('orientationchange', function() {
+    if (window.orientation === 0) { // Portrait
+        showAlert('Vui lòng xoay ngang thiết bị để có trải nghiệm tốt nhất!');
+    }
+});
+
+
+// function showAlert(message) {
+//     document.getElementById('custom-alert-content').textContent = message;
+//     document.getElementById('custom-alert').style.display = 'flex';
+// }
+
+// document.getElementById('custom-alert-close').addEventListener('click', function() {
+//     document.getElementById('custom-alert').style.display = 'none';
+// });
+
+
+function showAlert(message, onClose) {
+    document.getElementById('custom-alert-content').textContent = message;
+    document.getElementById('custom-alert').style.display = 'flex';
+
+    // Khi người dùng nhấn nút đóng, gọi hàm onClose (nếu có)
+    document.getElementById('custom-alert-close').onclick = function() {
+        document.getElementById('custom-alert').style.display = 'none';
+        if (onClose) {
+            onClose();
+        }
+    };
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// function displayQuestion() {
+//     const explanationElement = document.getElementById('explanation');
+//     const mathExplanationElement = document.getElementById('math-explanation');
+//     if (questions[currentQuestionIndex].mathProblem) {
+//         mathExplanationElement.innerHTML = questions[currentQuestionIndex].mathProblem;
+//         mathExplanationElement.style.display = 'block';
+//         MathJax.typesetPromise(); // Gọi MathJax để xử lý bài toán mới
+//     } else {
+//         mathExplanationElement.style.display = 'none';
+//     }
+
+
+
+
+
+//     const correctExplanationElement = document.getElementById('correct-explanation');
+//     explanationElement.style.display = 'none';
+//     correctExplanationElement.style.display = 'none';
+    
+//     if (currentQuestionIndex < questions.length) {
+//         const questionContainer = document.getElementById('question-container');
+//         questionContainer.innerHTML = `<h2>${questions[currentQuestionIndex].question}</h2>`;
+//         questions[currentQuestionIndex].answers.forEach((answer, index) => {
+//             const button = document.createElement('button');
+//             button.textContent = answer;
+//             button.className = 'answer';
+//             button.onclick = function() { checkAnswer(index, button); };
+//             questionContainer.appendChild(button);
+//         });
+//     } else {
+//          showAlert("Đã hết câu hỏi");
+//     }
+//      // Đặt lại giá trị của answered mỗi khi hiển thị một câu hỏi mới
+//      answered = false;
+
+// }
+
+
+
+function displayQuestion() {
+    const explanationElement = document.getElementById('explanation'); // Khôi phục lại dòng này
+    const mathExplanationElement = document.getElementById('math-explanation');
+    if (questions[currentQuestionIndex].mathProblem) {
+        mathExplanationElement.innerHTML = questions[currentQuestionIndex].mathProblem;
+        mathExplanationElement.style.display = 'block';
+        MathJax.typesetPromise(); // Gọi MathJax để xử lý bài toán mới
+    } else {
+        mathExplanationElement.style.display = 'none';
+    }
+
+    const correctExplanationElement = document.getElementById('correct-explanation');
+    explanationElement.style.display = 'none'; // Giờ đây, explanationElement đã được định nghĩa
+    correctExplanationElement.style.display = 'none';
+    
+    if (currentQuestionIndex < questions.length) {
+        const questionContainer = document.getElementById('question-container');
+        questionContainer.innerHTML = `<h2>${questions[currentQuestionIndex].question}</h2>`;
+        questions[currentQuestionIndex].answers.forEach((answer, index) => {
+            const button = document.createElement('button');
+            button.textContent = answer;
+            button.className = 'answer';
+            button.onclick = function() { checkAnswer(index, button); };
+            questionContainer.appendChild(button);
+        });
+    } else {
+         showAlert("Đã hết câu hỏi");
+    }
+     // Đặt lại giá trị của answered mỗi khi hiển thị một câu hỏi mới
+     answered = false;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function checkAnswer(index, button) {
+    // Kiểm tra xem người dùng đã trả lời câu hỏi chưa
+    if (answered) {
+        return; // Nếu đã trả lời, không làm gì cả
+    }
+      // Đánh dấu rằng người dùng đã trả lời câu hỏi
+      answered = true;
+
+    const explanationElement = document.getElementById('explanation');
+    const correctExplanationElement = document.getElementById('correct-explanation');
+    if (index === questions[currentQuestionIndex].correctAnswer) {
+        score++;
+        button.style.backgroundColor = 'green';
+        explanationElement.style.display = 'none';
+        correctExplanationElement.style.display = 'block';
+        correctExplanationElement.textContent = questions[currentQuestionIndex].explanation;
+    } else {
+        button.style.backgroundColor = 'red';
+        explanationElement.style.display = 'block';
+        explanationElement.textContent = questions[currentQuestionIndex].explanation;
+        correctExplanationElement.style.display = 'none';
+    }
+    document.getElementById('score-container').style.display = 'block';
+    document.getElementById('score').textContent = score;
+    saveUserAction(index);
+    currentQuestionIndex++;
+    localStorage.setItem('score', score);
+
+}
+
+function saveUserAction(selectedAnswer) {
+    userActions.push({
+        questionIndex: currentQuestionIndex,
+        selectedAnswer: selectedAnswer,
+        timestamp: new Date().toISOString()
+    });
+    localStorage.setItem('userActions', JSON.stringify(userActions));
+}
+
+document.getElementById('load-more').addEventListener('click', displayQuestion);
+// document.getElementById('check-score').addEventListener('click', function() {
+//     alert(`Điểm của bạn là: ${score}`);
+// });
+
+
+
+
+document.getElementById('check-score').addEventListener('click', function() {
+      // Lấy điểm số từ localStorage
+      var savedScore = localStorage.getItem('score');
+   
+    // Nếu không có điểm số được lưu, hiển thị 0
+    if (savedScore === null) {
+        savedScore = 0;
+    }
+     showAlert(`Điểm của bạn là: ${savedScore}/10`);
+});
+
+
+
+
+
+
+// Khôi phục hành động người dùng khi trang được tải lại
+window.onload = function() {
+    const savedActions = localStorage.getItem('userActions');
+    if (savedActions) {
+        userActions = JSON.parse(savedActions);
+        currentQuestionIndex = userActions[userActions.length - 1].questionIndex + 1;
+        displayQuestion();
+    } else {
+        displayQuestion(); // Hiển thị câu hỏi đầu tiên khi trang web tải xong
+    }
+}
+
+
+function clearData() {
+    localStorage.removeItem('userActions');
+    showAlert("Dữ liệu đã được xóa!", function() {
+        location.reload(); // Chỉ tải lại trang web sau khi người dùng nhấn nút đóng
+    });
+}
+
+        document.getElementById('load-more').addEventListener('click', displayQuestion);
+        document.getElementById('clear-data').addEventListener('click', clearData);
+
+
+
+
+
+
+
+
+        
+    </script>
+</body>
+</html>
