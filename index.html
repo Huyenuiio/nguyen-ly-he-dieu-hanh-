@@ -302,17 +302,343 @@ const questions = [
         explanation: "Phân bộ nhớ vật lý thành các khối (block) có kích thước cố định và bằng nhau, gọi là khung trang(page frame)| không gian địa chỉ cũng được chia thành các khối có cùng kích thướng với khung trang, và được gọi là trang(page)| khi cần nạp một tiến trình để xử lý, các trang của tiến trình sẽ được nạp vào những khung trang còn trống| một tiến trình kích thước N trang sẽ yêu cầu N khung trang tự do"
     },
     {
-        question: "",
+        question: "Câu 20: Trong kỹ thuật phân trang cấp phát vùng nhớ, một địa chỉ logic bao gồm",
         answers: ["Đáp án", "", "", ""],
         correctAnswer: 0,
-        explanation: ""
+        explanation: "Bộ <p.d> với p là số hiệu trang, d là địa chỉ tương đối trong trang"
     },
     {
-        question: "",
+        question: "Câu 21: Trong kỹ thuật phân trang, khi cấp phát vùng nhớ, nếu kích thước không gian địa chỉ ảo là 2mũ N thì địa chỉ ảo do CPU phát ra có số bit là bao nhiêu?",
         answers: ["Đáp án", "", "", ""],
         correctAnswer: 0,
-        explanation: ""
+        explanation: "Địa chỉ ảo có số bit là m, trong đó n bít thấp biểu điễn địa chỉ của ổ nhớ trong trang."
     },
+    {
+        question: "Câu 22: Ưu điểm của kỹ thuật phân trang khi cấp phát vùng nhớ là",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "Dễ thiết kế bộ MMU | Giảm phân mảnh bộ nhớ ngoài"
+    },
+    {
+        question: "Câu 23: Các thuật toán thay thế trang khi bị lỗi trang? thuạt toán nào tối ưu?",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "thuật toán FIFO (thay thế trang nào mà ở trong bộ nhớ lâu nhất) | Thuật toán thay thế trang lâu được sử dụng nhất trong tương lai(được gọi là thuật toán tối ưu những không khả thi)| Thuật toán LRU (least-recently-Used)(dựa vào thời điểm cuối cùng trang được truy xuất)"
+    },
+    {
+        question: "Câu 24: Trong các phương pháp quản lý việc cấp phát bộ nhớ, thuật toán chọn vùng trống đầu tiên đủ lớn để nạp cho tiến  trình là thuật toán tên gì?",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "First fit"
+    },
+    {
+        question: "Câu 25: Thuật toán chọn vùng trống tự do nhỏ nhất nhưng đủ lớn để nạp cho tiến trình là thuật toán chọn vùng trống tự do nhỏ nhất nhưng đủ lớn để nạp cho tiến trình là thuật toán gì?",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "Best fit"
+    },
+    {
+        question: "Câu 26: thuật toán chọn vùng trống tự do lớn nhất để nạp cho tiến trình là thuật toán gì?",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "Worst fit"
+    },
+    {
+        question: "Câu 27: các đặc điểm của kỹ thuạt đoạn trong cấp phát vùng nhớ?",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "Quan niệm không gian địa chỉ là một tập các phân đoạn (segments)| Các phân đoạn là những phần bộ nhớ khích thước khác nhau và có liên hệ logic với nhau | Mỗi phân đoạn có một tiên gọi (số hiệu phân đoạn) và có một độ dài ---> Người dùng sẽ thiết lập mỗi đỉa chỉ với giá trị < số hiệu phân đoạn, offset>"
+    },
+    {
+        question: "Câu 29: các đặc điểm của kỹ thuật phân trang kết hợp phân đoạn trong cấp phát vùng nhớ?",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "Không gian địa chỉ là một tập các phân đoạn, mỗi phân đoạn được chia thành nhiều trang | Khi một tiến trình được đưa vào hệ thống, HĐH sẽ cấp phát cho  tiến trình các trang cần thiết để chia đủ các phân đoạn của tiến trình"
+    },
+    {
+        question: "Câu 30: số trang tối thiểu cần cấp cho một tiến trình được quy định bỡi điều kiện gì?",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "Kiến trúc máy tính"
+    },
+    {
+        question: "Câu 31: Phân mảnh ngoại vi là hiện tượng gì?",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "Là các vùng nhớ nhỏ không sử dụng đến ngoài phân vùng cố định cho trước "
+    },
+    {
+        question: "Câu 32: xét không gian địa chỉ 32 trang, mỗi trang kích thước 1kb ánh xạ vào bộ nhớ vật lý có 64 khung trang. tính số bit địa chỉ logic và địa chỉ vật lý?",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "!15 bit và 16 bit"
+    },
+    {
+        question: "Câu 33: Giả sử 1 tiến trình có bảng phân đoạn như sau, tính địa chỉ vật lý ứng với địa chỉ ảo (logic) sau đây:a) Địa chỉ logic <1,150> b) địa chỉ logic <2,31> c)Địa chỉ logic<4,15> d) địa chỉ logic<0,150>. e)Địa chỉ logic<3,50>",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "a) Lỗi địa chỉ |b) 45 | C) 455 | D) 400 | E)Lỗi địa chỉ"
+    },
+    {
+        question: "Câu 34: Một phương pháp giải quyết tốt bài toán miền tranh chấp cần thỏa mãn các điều kiện nào?",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "Không có hai tiến trình cùng ở trong miền tranh chấp cùng một lúc | Một tiến trình tạm dùng bên ngoài miền tranh chấp không được ngăn cản các tiến trình khác vào miền tranh chấp | Không có tiến trình nào chờ vô hạn để được vào miền tranh chấp"
+    },
+    {
+        question: "Câu 35: Trong các giải pháp sau, giải pháp nào vi phạm điều kiện 'Không có 2 tiến trình cùng trong miền tranh chấp'?",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "Sử dụng biến cờ hiệu"
+    },
+    {
+        question: "Câu 36: Phương pháp đồng bộ nào đòi hỏi có sự hộ trợ của phần cứng?",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "TSL(Test-And-Set Lock)"
+    },
+    {
+        question: "Câu 37: Phương pháp kiểm tra luân phiên được đề nghị cho mấy tiến trình?",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "2"
+    },
+    {
+        question: "Câu 38: Cho các tiến trình với thời điểm vào và thời gian xử lý như sau: P1(0,5); P2(1,3); P3(3,1) | a) Với chế độ điều phối FIFO, các tiến trình được nhận CPU vào các thời điểm nào? | b) Với chế độ điều phối FIFO, cho biết thời gian lưu lại hệ thống của P3?| c) với chế độ điều phối FIFO, cho biết thời gian chờ trong hệ thống của tiến trình P2? |d) với chiến lược điều phối Round Robin với Quantum = 2, các tiến trình được nhập CPU lần đầu vào thời điểm nào? |e) Với chiến lược điều phối Round Robin với Quantum = 2, tính thời gian lưu lại hệ thống của các tiến trình",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "a) P1(0),P2(5),P3(8) | b)6 | c)4 |d)P1(0),P2(2),P3(4) | e) P1(9),P2(7),P3(2)"
+    },
+    {
+        question: "Câu 39: cho các tiến trình với thời điểm vào, thời gian xử lý và độ ưu tiên như sau: P1(0,10,3); P2(1,5,2): P3(12,1,1); P4(13,3,0) | a) cho biến thứ tự điều phối CPU khi sử dụng chiến lược điều phối ưu tiên độc quyền | b) cho biết thứ tự điều phối CPU khi sử dụng chiến lược điều phối ưu tiên không độc quyền",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "a) P1,P2,P4,P3 | b) P1,P2,P3,P4,P2"
+    },
+    {
+        question: "Câu 40: để không xảy ra tắc nghẽn, điều kiện nào sau đây là cần thiết?",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "Không có 1 trong 4 trường hợp sau đây 1) có sử dụng tài nguyên không thể chia sẻ (Mutual exelusion): Mỗi thời điểm, một tài nguyên không thể chia sẻ được hệ thống cấp phát chỉ cho một tiến trình, khi tiến trình sử dụng xong tài nguyên này, hệ thống mới thu hồi và cấp phát tài nguyên cho tiến trình khác | 2) sự chiếm giữ và yêu cầu thêm tài nguyên(Wait for): các tiến trình tiếp tục chiễm giữ các tài nguyên dã cấp phát cho nó trong khi chờ được cấp phát thêm một số tài nguyên mới.| 3) không thu hồi tài nguyên từ tiến trình đang giữ chúng trước khi tiến trình này sử dụng chúng xong | 4) Tồn tại một chu kỳ trong đô thị cấp phát tài nguyên( circular wait): có ít nhất hai tiến trình chờ đợi lẫn nhau tiến trình này chờ được cấp phát tài nguyên đang bị tiến trình kia chiếm giữ và ngược lại"
+    },
+    {
+        question: "Câu 42: Xét một không gian địa chỉ có 8 trang, mỗi trang có kích thước là 1kb ảnh xạ vào bộ nhớ vật lý có 32 | a0 cho biết địa chỉ luận lý (địa chỉ ảo ) gồm bao nhiêu bit? | b) cho biết địa chỉ vật lý gồm bao nhiêu bit? | c) cho biết bằng trang có bao nhiêu mục?",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "a) 13 | b) 15 | c) 8"
+    },
+    {
+        question: "Câu 43: giả sử bộ nhớ chính được phân thành vùng có kích thước theo thứ tự là: 600k, 500K, 200k, 300k; các tiến trình có kích thước theo thứ tự là: 212K, 417k, 112k, 426k | a) cho biết tiến trình cấp phát nếu sử dụng thuật toán Best Fit | b) cho biết tiến trình cấp phát nếu sử dụng thuật toán First Fit | c) cho biết tiến trình cấp phát nếu sử dụng thuật toán Worst Fit",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "Trả lời: các thuật toán chọn đoạn trống: firt-fit: chọn đoạn trống đầu tiên đủ lớn | Best - fit: chọn đoạn trống nhỏ nhất những đủ lớn để thỏa yêu cầu | Worst - fit: chọn đoạn trống lớn nhất | a) 212K --> 300k, 417k -->500k, 112k -->200k,426k-->600K |b) 212k --> 600K, 417K -->500k,200k, 426k Không cấp phát | c) 212k --> 600K, 417k--500K,112K--300k,426k không cấp phát"
+    },
+    {
+        question: "Câu 1: Máy tính lưu trữ thông tin trong nhiều dạng thiết bị vật lý khác nhau. để thống nhất cách truy cập hệ thống lưu trữ trên máy tinh, hệ điều hành định nghĩa đơn vị lưu trữ là: ",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "Tập tin"
+    },
+    {
+        question: "Câu 2: Tại ssao máy tính phải sử dụng bộ nhớ ngoài?",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "Cần chứa những thông tin có dung lượng rất lớn | Lưu giữ trong thời gian dài trước và sau khi xử lý | Nhiều tiến trình cùng lúc truy cập"
+    },
+    {
+        question: "Câu 3: Tập tin có nhưng thuộc tính gì?",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "Đơn vị lưu trữ thông tin của bộ nhớ ngoài | Tiến trình có thể đọc hoặc tạo tập tin | Lưu trữ bền vững | được quản lý bởi HĐH để quản lý, mỗi đối tượng tập tin phải có một tên. Cách đặt tên tập tin là tuy thuộc hệ điều hành"
+    },
+    {
+        question: "Câu 4: Cấu trúc tập tin như thế nào?",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "Dãy các Record chiều dài không cố định "
+    },
+    {
+        question: "Câu 5: các hệ điều hành hỗ trợ tập tin bao gồm các kiểu nào?",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "Tập tin thường. thư mục, tập tin có ký tự đặc biệt, tập tin khối"
+    },
+    {
+        question: "Câu 6: loại thư mục nào đễ thiết kế nhưng gây khó khăn khi đặt tên tập tin và không thể phân nhóm tập tin theo người sử dụng?",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "Một cấp"
+    },
+    {
+        question: "Câu 7: Phân biệt giữa truy xuất ngẫu nhiên và truy xuất tuần tự ",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "Truy xuất ngẫu nhiên: thời gian truy xuất mọi ô nhớ là như nhau | tuy xuát tuần tự: thời gian truy xuất các ô nhớ khác nhau không bằng nhau, VD: BN bằng từ"
+    },
+    {
+        question: "Câu 8: tập tin văn bản có thể hiển thị, in hay soạn thảo với một trình editor thông thường hay không?",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "Có"
+    },
+    {
+        question: "Câu 9: Tập tin khối dùng cho thiết bị nào?",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "Ỗ đĩa"
+    },
+    {
+        question: "câu 11: Chức năng quản lý tập tin của HĐH bao gồm? ",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "Tạo, hủy, mở, đóng, đọc, ghi.."
+    },
+    {
+        question: "Câu 12: hệ điều hành có thể truy xuất vài mọi tập tin nhị phân hay không vì sao?",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "Về mặt lý thuyết, hệ điều hành có thể truy cập vào mọi tệp nhị phân trong hệ thống, với một số ngoại lệ Khả năng truy cập này có thể bị hạn chế bởi các yêu tố sau 1. quyền truy cập: HĐH có thể bị giới hạn bởi các quyền truy cập được gán cho tệp nhị phân Ví dụ: tệp nhị phân có thể truy cập được bởi chủ sỡ hữu nhóm hoặc người dùng được ủy quyền | 2.Định dạng tệp: HĐH có thể không thể hiểu hoặc xử lý tất cả các định dạng tệp nhị phân Ví dụ: hệ điều hành Windows có thể không thể truy cập trực tiếp vào tệp nhị phân được định dạng cho Linux |3. Mục dích sử dụng: HĐh có thể không truy cập vào tệp nhị phân nếu không cần thiết cho hoạt động của hệ thống Ví dụ: Hệ điều thành có thể không truy cập vào tiệp nhị phân trò chơi nếu người dùng không đang chơi trò chơi | 4.Hiệu suất: Việc truy cập vào tệp nhị phân có thể ảnh hưởng dến hiệu suất của hệ thống, đặc biệt là đói với các tệp nhị phân lớn hoặc phức tạp. hệ điều hành có thể hạn chế việc truy cập tệp nhị phản dể tránh làm giảm hiệu suất hệ thông | Nhìn chung, HĐH có thể truy cập vào hầu hết các tệp nhị phân trong hệ thống, nhưng khả năng truy cập này có thể bị hạn chế bởi các yếu tố như quyền truy cập, định dạng tệp. mục sử dụng và hiêu suất việc sử dụng các quyền truy cập cao một cách cẩn thận và cập nhật hệ thống thường xuyên với các bản vá bảo mạt rất quan trọng để bảo vệ hệ thống khỏi các mối đe dọa tiềm ẩn"
+    },
+    {
+        question: "Câu 13: các qui định về tên tập tin?",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "Tên tập tin gồm 2 phần ngăn cách bởi dấu chấm | Phần mở rộng để nhận dạng kiểu và các thao tác thực hiện được trên tập tin | cách đặt tên do HĐH quy định"
+    },
+    {
+        question: "Câu 14: kiểu tập tin nào liên quan đến nhập xuất dùng để truy xuất trên thiết bị dĩa?",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "Tập tin khỗi"
+    },
+    {
+        question: "Câu 15: Kiểu tập tin nào lieen quan đến nhập xuất thông qua các thiết bị nhập xuất tự như màn hình, máy in, card mạng?",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "Tập tin có kí tự đặt biệt "
+    },
+    {
+        question: "Câu 16: Phát biểu nào sau đây là đúng?",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "Tập tin có thể chứa tập tin và thư mục | Tập tin không thể chứa thư mục nhưng có thể chứa tập tin | tập tin là đơn vị đo thông tin | tập tin là đơn vị lưu trữ lưu tin nhỏ nhất"
+    },
+    {
+        question: "Câu 17: Về mặt cấu trúc, có bao nhiêu loại tập tin?",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "2/3 loại?không cấu trúc, có cấu trúc, cấu trúc cây"
+    },
+    {
+        question: "Câu 18: Có các kiểu tập tin nào?",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "File thường: là file văn bản hay file nhị phân chứa thông tin của người sử dụng | Thu mục: là những file hệ thống dùng để lưu giữ cấu trúc của hệ thống file | file có ký tự đặc biệt: liên quan đến nhập/xuất thông qua các thiết bị nhập/xuất tuần tự như màn hình, máy in... | file khối: dùng dể truy xuất trên thiết bị đĩa"
+    },
+    {
+        question: "Câu 19: Tập tin thường có mấy loại?",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "Gồm 2 loại Tập tin văn bản: chứa dòng văn bản có chiều dài khác nhau, cuối dòng có Enter. có thể hiển thị in hay soạn thảo | Tập tin nhị phần: Gồm các dãy byte, HĐh sẽ thực thi khi tập tin có câu trúc đúng"
+    },
+    {
+        question: "Câu 20: Cách cài đặt hệ thống tập tin nào sau đây hiệu quả cho việc quản lý những hệ thông tập tin lớn? ",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "Dùng cấu trúc I-node"
+    },
+    {
+        question: "Câu 21: Đường đẫn tương đối là gì",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "Đường đẫn không bắt đầu từ thư mục gốc mà liên quan đến thư mục hiện hành"
+    },
+    {
+        question: "Câu 22: Đường đẫn tuyệt đối là gì?",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "Đường đẫn từ thu mục gôc đến tập tin"
+    },
+    {
+        question: "Câu 23: khi mội hệ thống tập tin được tổ chức thành một cây thư mục, có mấy cách để xác định tên một tập tin?",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "2"
+    },
+    {
+        question: "Câu 24: Yếu tố nào được người đặt quan tâm đến khi cài đặt hệ thông quản lý tập tin?",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "Quản lý vùng nhớ trên đĩa"
+    },
+    {
+        question: "Câu 25: Kiểu cài đặt bảng phân phối cùng nhớ nào hạn chế phân mảnh nhưng truy xuất ngẫu nhiên bị chậm?",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "Định vị bằng danh sách liên kết"
+    },
+    {
+        question: "Câu 26: Chức năng nào chỉ có trên thư mục nhưng không có trên tập tin?",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "Liên kết"
+    },
+    {
+        question: "Câu 27: Chức năng nào chỉ có trên tập tin nhưng không có trên thư mục?",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "Ghi"
+    },
+    {
+        question: "Câu 28: Loại thư mục nào khó khăn khi phân nhóm tập tin theo người dùng?",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "Một cấp"
+    },
+    {
+        question: "Câu 29:Danh sách các sector hóng có thể được lưu ở đâu?",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "Tập tin hoặc sertor"
+    },
+    {
+        question: "Câu 30: Cài đặt bẳng phân phối vùng nhớ nào dễ dàng truy xuất ngẫu nhiên nhưng bị hạn chế bởi kích thước bộ nhớ?",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "Danh sách liên kết sử dụng Index"
+    },
+    {
+        question: "Câu 31: Phương pháp nào sau đây dùng để quản lý khối trống?",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "Danh sách liên kết"
+    },
+    {
+        question: "Câu 32: Loại thư mục nào đễ tổ chưc và khai thác nhưng gây khó khăn khi đặt tên tập tin không trùng nhau và người sử dụng không thể phần nhóm tập tin và tìm kiếm chậm?",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "thư mục đa cấp"
+    },
+    {
+        question: "Câu 33: Thành phần nào không nằm trong hệ thống quản lý file?",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "Hệ thống truy nhập logic"
+    },
+    {
+        question: "Câu 34: Dung lượng đĩa 1GB, kích thước khối là 4k, Nếu quản lý khối dùng vector bit thì kích thước vector bit là bao nhiêu khối?",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "8"
+    },
+    {
+        question: "Câu 35: Dung lượng đĩa là 20MB, khối có kích thước 1k, Nếu quản lý khối trống dùng vector bit thì kích thước vector bit là bao nhiêu?",
+        answers: ["Đáp án", "", "", ""],
+        correctAnswer: 0,
+        explanation: "10x2mũ10bit"
+    },
+   
+    
 ];
 
 
